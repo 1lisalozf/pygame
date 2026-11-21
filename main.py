@@ -183,27 +183,28 @@ class Game:
         if pygame.time.get_ticks() // 500 % 2 == 0:  # 0.5초마다 깜빡임
             self.draw_text("Press SPACE to start", self.font, YELLOW, center=(cx, 540))
 
+
     def draw_game_over(self):
         """게임 오버 화면. self.game_over 가 True 일 때 draw() 가 부른다."""
-        # TODO(F4): 화면 가운데에 "GAME OVER" 와 이번 판 점수를 표시할 것.
 
-        def draw_game_over(self):
-            cx = WIDTH // 2
-            cy = HEIGHT // 2
+        cx = WIDTH // 2
+        cy = HEIGHT // 2
 
-            self.draw_text(
-                "GAME OVER",
-                self.big_font,
-                RED,
-                center=(cx, cy - 60)
-            )
+        self.draw_text(
+            "GAME OVER",
+            self.big_font,
+            RED,
+            center=(cx, cy - 40)
+        )
 
-            self.draw_text(
-                f"SCORE: {self.score}",
-                self.font,
-                pink,
-                center=(cx, cy + 10)
-            )
+        self.draw_text(
+            f"SCORE: {self.score}",
+            self.font,
+            RED,
+            center=(cx, cy + 10)
+        )
+
+    # TODO(F5): 최고 점수와 재시작 안내 표시
 
         # TODO(F5): 최고 점수("HIGH SCORE: 300")와 재시작 안내("Press R to restart")도 표시할 것.
         pass
