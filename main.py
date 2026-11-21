@@ -113,13 +113,28 @@ class Game:
         # TODO(F4): 적이 플레이어에 닿으면 그 적을 없애고 생명(self.lives)을 1 줄일 것.
         #           힌트: pygame.sprite.spritecollide
 
+
+            collided_enemies = pygame.sprite.spritecollide(
+                self.player,
+                self.enemies,
+                True
+            )
+
+            self.lives -= len(collided_enemies)
+
+
         # 화면 아래로 지나간 적은 없앨 것.
         for enemy in list(self.enemies):
             if enemy.rect.top > HEIGHT:
                 enemy.kill()
+                self.lives -= 1
                 # TODO(F4): 적이 아래로 지나갔으니 생명을 1 줄일 것.
 
         # TODO(F4): 생명이 0 이하가 되면 self.end_game() 을 실행할 것.
+
+        if self.lives <= 0:
+            self.end_game()
+
 
     def end_game(self):
         """게임 오버 처리."""
@@ -168,9 +183,29 @@ class Game:
         if pygame.time.get_ticks() // 500 % 2 == 0:  # 0.5초마다 깜빡임
             self.draw_text("Press SPACE to start", self.font, YELLOW, center=(cx, 540))
 
+
     def draw_game_over(self):
         """게임 오버 화면. self.game_over 가 True 일 때 draw() 가 부른다."""
-        # TODO(F4): 화면 가운데에 "GAME OVER" 와 이번 판 점수를 표시할 것.
+
+        cx = WIDTH // 2
+        cy = HEIGHT // 2
+
+        self.draw_text(
+            "GAME OVER",
+            self.big_font,
+            RED,
+            center=(cx, cy - 40)
+        )
+
+        self.draw_text(
+            f"SCORE: {self.score}",
+            self.font,
+            RED,
+            center=(cx, cy + 10)
+        )
+
+    # TODO(F5): 최고 점수와 재시작 안내 표시
+
         # TODO(F5): 최고 점수("HIGH SCORE: 300")와 재시작 안내("Press R to restart")도 표시할 것.
         pass
 
