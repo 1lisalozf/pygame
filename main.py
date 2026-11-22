@@ -228,6 +228,12 @@ class Game:
         )
 
     # TODO(F5): 최고 점수와 재시작 안내 표시
+        self.draw_text(
+            f"SCORE: {self.score}",
+            self.font,
+            WHITE,
+            center=(cx, cy - 10)
+        )
 
         # TODO(F5): 최고 점수("HIGH SCORE: 300")와 재시작 안내("Press R to restart")도 표시할 것.
         pass
