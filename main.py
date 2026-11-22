@@ -17,6 +17,14 @@ def load_high_score():
     """HIGHSCORE_FILE 에서 최고 점수를 읽어 돌려준다."""
     # TODO(F5): 파일에서 최고 점수를 읽어 int 로 반환할 것.
     #           파일이 없거나 내용이 숫자가 아니면 0 을 반환할 것.
+
+    def load_high_score():
+        try:
+            with open(HIGHSCORE_FILE, "r") as file:
+                return int(file.read().strip())
+        except (FileNotFoundError, ValueError):
+            return 0
+
     return 0
 
 
